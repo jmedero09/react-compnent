@@ -3,6 +3,37 @@ var ReactDOM = require('react-dom');
 var Card = require('./card.js');
 
 var List = React.createClass({
+	getInitialState: function(){
+		return{
+
+			inputText:'',
+			cardsArray:[]
+		}
+
+	},
+
+	onAddInputChanged: function(e){
+		this.setState({
+
+			inputText:e.target.value,
+
+		});
+	},
+
+	onAddSubmit: function(e){
+
+		e.preventDefault();
+
+		if(this.state.inputText.length > 0){
+
+			this.setState({
+
+				cardsArray: this.state.cardsArray.concat([<Card text={this.state.inputText}/>]),
+
+			});
+		}
+		this.refs.cardInput.value = '';
+	},	
 	render:function(props){
 		return(
 			<div>
@@ -12,9 +43,12 @@ var List = React.createClass({
 				<Card text="card 2"/>
 				<Card text="card 3"/>
 
-				<form onSubmit={this.props.formSubmit}>
-					<input type="text"onChange={this.props.fn}/>
-					<button onSubmit={this.props.click}>Submit</button>
+				{ this.state.cardsArray }
+
+
+				<form onSubmit={this.onAddSubmit}>
+					<input ref="cardInput" type="text"onChange={this.onAddInputChanged}/>
+					<button>Submit</button>
 				</form>
 			</div>
 

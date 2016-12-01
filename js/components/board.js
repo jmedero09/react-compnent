@@ -12,21 +12,6 @@ var Board = React.createClass({
 		onAddSubmit()
 
 	},
-	onAddInputChanged:function(e){
-		this.setState({
-
-			inputText:e.target.value
-
-		});
-	},
-	onAddSubmit:function(e){
-
-		e.preventDefault();
-
-		this.cardsArray.push(<Card text={this.state.inputText}/>);
-	},
-
-
 	render:function(props){
 
 		// var lists = [<List title="to do" fn={this.onAddInputChanged} formSubmit={this.onAddSubmit} click={this.onAddSubmit}/>,
@@ -35,8 +20,9 @@ var Board = React.createClass({
 			return(
 				<div>
 					<h1>{this.props.title}</h1>
-					
-					<ListContainer fn={this.onAddInputChanged} click={this.onAddSubmit} formSubmit={this.onAddSubmit}/>
+					<List title="List 1" />
+					<List title="List 2" />
+					<List title="List 3" />
 				</div>
 			);
 		}
